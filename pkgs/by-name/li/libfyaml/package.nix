@@ -34,6 +34,8 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://github.com/pantoniou/libfyaml/commit/9192deaac095f9881cc1e5756dede683f36b09d6.diff";
       hash = "sha256-cNL9wQtxIRg/ShZLJP4qHYNFRrYo9kRG+/U+3FiUeaI=";
     })
+    # Fixing the pthread issues
+    ./pthread-darwin.patch
   ];
 
   nativeBuildInputs = [
