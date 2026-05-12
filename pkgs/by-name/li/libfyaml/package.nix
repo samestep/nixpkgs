@@ -34,8 +34,18 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://github.com/pantoniou/libfyaml/commit/9192deaac095f9881cc1e5756dede683f36b09d6.diff";
       hash = "sha256-cNL9wQtxIRg/ShZLJP4qHYNFRrYo9kRG+/U+3FiUeaI=";
     })
-    # Fixing the pthread issues
+    # On Darwin, AX_PTHREAD returns empty PTHREAD_LIBS with -pthread in PTHREAD_CFLAGS;
+    # don't force -lpthread when PTHREAD_CFLAGS already provides pthread support.
     ./pthread-darwin.patch
+    # backport "build: don't output 'none required' to LIBM if no linker flags needed for it"
+    (fetchpatch {
+      url = "https://github.com/pantoniou/libfyaml/commit/24b18e7363b336962fe160c1dc05ca57ba95783c.diff";
+      hash = "sha256-g5QKI4HuS8MEQ9ddIQNC0j+28Dh9zLAp5RaZX5SWBHk=";
+    })
+    (fetchpatch {
+      url = "https://github.com/pantoniou/libfyaml/commit/9f2492ca27bb1fda64f2b12edc2da17406208b93.diff";
+      hash = "sha256-E4wS+P7R3VGrBpD7swWMMi/QPTF+9rzAeEyxhbmdiwk=";
+    })
   ];
 
   nativeBuildInputs = [
