@@ -16,6 +16,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [ flex ];
 
+  patches = [
+    # Upstream's 8.7 RCS revision changed scanners to use snprintf,
+    # exposing the too-old POSIX feature-test macro on Darwin.
+    ./flex-posix-2001.patch
+  ];
+
   enableParallelBuilding = true;
 
   outputs = [

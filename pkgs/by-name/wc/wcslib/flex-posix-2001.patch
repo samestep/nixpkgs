@@ -1,0 +1,13 @@
+diff --git a/configure b/configure
+index b3c8b1e..e377c16 100755
+--- a/configure
++++ b/configure
+@@ -5134,7 +5134,7 @@ fi
+ # as stdio.h is included in the generated C code before any part of the
+ # description.  See fileno(3) and feature_test_macros(7).
+ if test "x$ac_cv_c_compiler_gnu" = xyes ; then
+-  FLFLAGS="$FLFLAGS -D_POSIX_C_SOURCE=1"
++  FLFLAGS="$FLFLAGS -D_POSIX_C_SOURCE=200112L"
+ fi
+ 
+ 
