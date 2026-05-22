@@ -204,5 +204,9 @@ stdenv.mkDerivation rec {
       raskin
     ];
     platforms = lib.platforms.all;
+    # ACL2 8.6 requires floating-point overflow traps to work when built with
+    # SBCL, but SBCL on aarch64-linux reports :TRAPS NIL after enabling them:
+    # https://github.com/acl2-devel/acl2-devel/commit/0632b37adffb6b5fd71d8438d519133281f837ec
+    badPlatforms = [ "aarch64-linux" ];
   };
 }
